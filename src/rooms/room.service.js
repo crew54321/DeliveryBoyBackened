@@ -164,6 +164,10 @@ async function makeAI(room, io, socket) {
     if (!user) {
       user = await createAiUser();
     }
+    user.name =
+      board["aiplayers"][
+        Math.floor(Math.random() * (board["aiplayers"].length - 1)) + 0
+      ];
     if (!Array.isArray(room.players_joined)) {
       room.players_joined = [];
     }
