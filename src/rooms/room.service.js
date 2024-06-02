@@ -245,7 +245,7 @@ async function makeAI(room, io, socket) {
         if (!Array.isArray(gameplay.tasks)) {
           gameplay.tasks = [];
         }
-        for (let i = 1; i <= 10; i++) {
+        for (let i = 1; i <= 5; i++) {
           let p = new PegsData();
           p.id = i;
           p.restaurantId = Math.floor(Math.random() * (10 - 1 + 1) + 1);
@@ -267,7 +267,7 @@ async function makeAI(room, io, socket) {
         }
         if (aiUser != 0) {
           let last = 0;
-          for (let i = 1; i <= 10; i++) {
+          for (let i = 1; i <= 5; i++) {
             let t = last + Math.floor(Math.random() * (40 - 1 + 1) + 15) * 1000;
 
             last = t;
@@ -494,7 +494,7 @@ async function lookForPublicRoom(obj, socket, io, cb) {
             if (!Array.isArray(gameplay.tasks)) {
               gameplay.tasks = [];
             }
-            for (let i = 1; i <= 10; i++) {
+            for (let i = 1; i <= 5; i++) {
               let p = new PegsData();
               p.id = i;
               p.restaurantId = Math.floor(Math.random() * (10 - 1 + 1) + 1);
@@ -634,7 +634,7 @@ async function joinRoom(obj, socket, io, cb) {
                 let a = Math.floor(Math.random() * 2);
                 if (a == 0) gameplay.coins.push(i);
               }
-              for (let i = 1; i <= 10; i++) {
+              for (let i = 1; i <= 5; i++) {
                 let p = new PegsData();
                 p.id = i;
                 p.restaurantId = Math.floor(Math.random() * (10 - 1 + 1) + 1);

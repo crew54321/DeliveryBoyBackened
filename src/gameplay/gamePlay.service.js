@@ -74,7 +74,7 @@ async function taskDone(io, obj, socket) {
 
         game.markModified("tasksDone");
 
-        if (game.tasksDone[i].taskDone.length >= 10) {
+        if (game.tasksDone[i].taskDone.length >= 5) {
           game.winnerId = obj.id;
           resetCoinsById(obj.id, 150);
           io.to(obj.game_id).emit("GAMEEND", {

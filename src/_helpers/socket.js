@@ -170,7 +170,7 @@ module.exports = function (io) {
     });
     socket.on("USEINVINCIBLE", async (obj, cb) => {
       console.log({ obj });
-      await room.useInvincible(obj, cb);
+      await gamePlay.useInvincible(obj, cb);
     });
     async function playerOffline(socket) {
       console.log({ socket });
