@@ -99,13 +99,14 @@ router.post("/users/register", async (req, res) => {
     });
   }
 });
+
 router.post("/users/updateCoins", async (req, res) => {
-  let user = await User.findById(req.body.id);
+  let user = await User.findById(req.body.id, { coins: 1 });
   user.coins += req.body.coins;
   await user.save();
 
   res.status(200).send({
-    message: user,
+    message: user.coins,
     status: 200,
   });
 });
@@ -132,7 +133,6 @@ router.post("/users/update", async (req, res) => {
     res.status(200).send({
       message: user,
       status: 200,
-
       missions: allMissions,
     });
   }
@@ -210,22 +210,22 @@ router.post("/users/screen", async (req, res) => {
 
 router.post("/users/watchads", async (req, res) => {
   try {
-    let user = await User.findById(req.body.id);
+    let user = await User.findById(req.body.id, { coins: 1 });
     user.coins = user.coins + 100;
     console.log("user " + user.coins);
     user.save();
-    res.send({ status: 200, message: user });
+    res.send({ status: 200, message: user.coins });
   } catch (e) {
-    io.to(user._id).emit("UPDATEDUSER", { status: 200, message: user });
+    //io.to(user._id).emit("UPDATEDUSER", { status: 200, message: user });
   }
 });
 
 router.post("/users/addcoins", async (req, res) => {
-  let user = await User.findById(req.body.id);
+  let user = await User.findById(req.body.id, { coins: 1 });
+
   user.coins = user.coins + req.body.coins;
 
   await user.save();
-  console.log("user " + user.coins);
 
   res.send({
     status: 200,
@@ -234,11 +234,11 @@ router.post("/users/addcoins", async (req, res) => {
 });
 
 router.post("/users/addInvincible", async (req, res) => {
-  let user = await User.findById(req.body.id);
+  let user = await User.findById(req.body.id, { coins: 1, invincible: 1 });
+  console.log("user " + user + "    " + user.coins);
   user.invincible = user.invincible + req.body.invincible;
   user.coins = user.coins - req.body.coins;
   await user.save();
-  console.log("user " + user.invincible);
 
   res.send({
     status: 200,
@@ -248,16 +248,15 @@ router.post("/users/addInvincible", async (req, res) => {
 
 router.post("/users/dailyreward", async (req, res) => {
   try {
-    let userPacks = await UserPacks.findOne({ id: req.body.id });
-    let user = await User.findById(req.body.id);
-    user.coins = user.coins + user.level * 100;
-    userPacks.dailyReward = 1;
-    userPacks.save();
+    let user = await User.findById(req.body.id, { coins: 1, dailyReward: 1 });
+    user.coins = user.coins + 100;
+    user.dailyReward = 1;
+
     console.log("user " + user.coins);
-    user.save();
+    await user.save();
     res.send({
       status: 200,
-      message: user,
+      message: user.coins,
     });
   } catch (e) {
     res.status(400).send({

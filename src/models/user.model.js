@@ -114,6 +114,11 @@ const userSchema = new mongoose.Schema({
     required: false,
     default: "user",
   },
+  dailyReward: {
+    type: Number,
+    required: false,
+    default: 0,
+  },
 });
 
 userSchema.methods.toJSON = function () {
