@@ -25,8 +25,24 @@ module.exports = {
   cancelTimer,
   coinCollect,
   leavetheGame,
+  useInvincible,
 };
-
+async function useInvincible(obj, cb) {
+  await User.findByIdAndUpdate(
+    obj.id,
+    {
+      $inc: { invincible: -1 },
+    },
+    { new: true },
+    function (err, doc) {
+      if (err) {
+        throw err;
+      } else {
+        //  console.log("Updated User");
+      }
+    }
+  );
+}
 async function resetCoinsById(id, coin) {
   User.findByIdAndUpdate(
     id,

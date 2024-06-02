@@ -9,7 +9,11 @@ const userSchema = new mongoose.Schema({
     required: false,
     default: "",
   },
-
+  invincible: {
+    type: Number,
+    required: false,
+    default: 5,
+  },
   deviceId: {
     type: String,
     trim: true,

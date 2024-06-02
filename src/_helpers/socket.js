@@ -168,7 +168,10 @@ module.exports = function (io) {
       console.log({ obj });
       await gamePlay.cancelTimer(io, obj, socket, cb);
     });
-
+    socket.on("USEINVINCIBLE", async (obj, cb) => {
+      console.log({ obj });
+      await room.useInvincible(obj, cb);
+    });
     async function playerOffline(socket) {
       console.log({ socket });
       let user = await User.findOne({ socket_id: socket });

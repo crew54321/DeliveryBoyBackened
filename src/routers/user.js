@@ -233,6 +233,19 @@ router.post("/users/addcoins", async (req, res) => {
   });
 });
 
+router.post("/users/addInvincible", async (req, res) => {
+  let user = await User.findById(req.body.id);
+  user.invincible = user.invincible + req.body.invincible;
+  user.coins = user.coins - req.body.coins;
+  await user.save();
+  console.log("user " + user.invincible);
+
+  res.send({
+    status: 200,
+    message: user.invincible,
+  });
+});
+
 router.post("/users/dailyreward", async (req, res) => {
   try {
     let userPacks = await UserPacks.findOne({ id: req.body.id });
