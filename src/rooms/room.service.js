@@ -191,7 +191,7 @@ async function makeAI(room, io, socket) {
     let timeLeft = room.end_time - Date.now();
     io.to(room._id).emit("ONROOMJOINED", {
       timeLeft: timeLeft,
-      status: 200,
+      status: 300,
       room,
     });
   }
