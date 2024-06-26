@@ -188,10 +188,10 @@ module.exports = function (io) {
     }
 
     socket.on("disconnect", function () {
-      // console.log(" has disconnected from the chat." + socket.id);
+      console.log(" has disconnected from the chat." + socket.id);
 
       playerOffline(socket.id);
-      //  userService.setOfflineUsers(socket, all_users);
+
       delete all_users[socket.id];
       console.log(all_users);
     });

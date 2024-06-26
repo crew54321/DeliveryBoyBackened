@@ -527,6 +527,7 @@ async function endGame(gameId, io) {
     if (user) {
       if (gamePlay.winnerId == gamePlay.users_data[i]._id) {
         user.wins = user.wins + 1;
+        user.coins += 150;
       }
       for (let i = 0; i < gamePlay.tasksDone.length; i++) {
         if (gamePlay.tasksDone[i].id == user._id) {
