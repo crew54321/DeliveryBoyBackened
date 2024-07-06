@@ -78,12 +78,12 @@ async function missionDone(socket, io, obj, cb) {
 async function addInitialChatsAndMissions(id) {
   let user = new UserPacks();
   user.id = id;
-  if (!Array.isArray(user.chatPacks)) {
-    user.chatPacks = [];
-  }
-  for (let i = 0; i < 10; i++) {
-    user.chatPacks.push(chatPacks["chats"][i]);
-  }
+  //if (!Array.isArray(user.chatPacks)) {
+  //  user.chatPacks = [];
+  // }
+  //for (let i = 0; i < 10; i++) {
+  //user.chatPacks.push(chatPacks["chats"][i]);
+  // }
 
   if (!Array.isArray(user.missions)) {
     user.missions = [];

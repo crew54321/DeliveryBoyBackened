@@ -84,6 +84,7 @@ router.post("/users/register", async (req, res) => {
     // const secret = config.secret;
     // save user token
     // user.token = secret;
+    user.country = req.body.country;
     user.deviceId = req.body.deviceId;
     await user.save();
     let allMissions = await userPacks.sendAllMissionsJson(user._id);
