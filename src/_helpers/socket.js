@@ -29,7 +29,7 @@ module.exports = function (io) {
     try {
       // const decoded = jwt.verify(isRevoked.trim(), secret);
       //  all_users[socket.id] = decoded.sub;
-      console.log(" On Network" + socket.id + "   " + isRevoked);
+      //   console.log(" On Network" + socket.id + "   " + isRevoked);
       let user = await User.findById(isRevoked);
       user.socket_id = socket.id;
       user.is_online = 1;
@@ -50,7 +50,7 @@ module.exports = function (io) {
         }
       }
 
-      console.log(" USER " + user);
+      //  console.log(" USER " + user);
     } catch (err) {
       console.log("errrr " + err);
 
@@ -60,36 +60,36 @@ module.exports = function (io) {
     }
 
     socket.on("CREATEROOM", async (obj, cb) => {
-      console.log({ obj });
+      // console.log({ obj });
       await room.createRoom(obj, socket, io, cb);
     });
     socket.on("TASKDONE", async (obj, cb) => {
-      console.log({ obj });
+      //  console.log({ obj });
       await gamePlay.taskDone(io, obj, socket);
     });
 
     socket.on("CHECKROOM", async (obj, cb) => {
-      console.log({ obj });
+      //   console.log({ obj });
       await room.checkRoom(obj, socket, io, cb);
     });
 
     socket.on("JOINROOM", async (obj, cb) => {
-      console.log({ obj });
+      //  console.log({ obj });
       await room.joinRoom(obj, socket, io, cb);
     });
 
     socket.on("SETCOINNOW", async (obj, cb) => {
-      console.log({ obj });
+      //  console.log({ obj });
       await room.setCoin(obj, socket, io, cb);
     });
 
     socket.on("LEAVEROOM", async (obj, cb) => {
-      console.log({ obj });
+      //  console.log({ obj });
       await room.leaveRoom(obj, socket, io, cb);
     });
 
     socket.on("PUBLICROOM", async (obj, cb) => {
-      console.log({ obj });
+      //  console.log({ obj });
       await room.lookForPublicRoom(obj, socket, io, cb);
     });
 
@@ -99,7 +99,7 @@ module.exports = function (io) {
     });
 
     socket.on("CHECKGAME", async (obj, cb) => {
-      console.log({ obj });
+      //  console.log({ obj });
       await room.checkGame(obj, socket, io, cb);
     });
 
@@ -109,35 +109,35 @@ module.exports = function (io) {
     }); */
 
     socket.on("CONSTRUCT", async (obj, cb) => {
-      console.log({ obj });
+      //  console.log({ obj });
       await gamePlay.construct(io, obj, socket, cb);
     });
 
     socket.on("SWAP", async (obj, cb) => {
-      console.log({ obj });
+      //  console.log({ obj });
       await gamePlay.swap(io, obj, socket, cb);
     });
     socket.on("UPGRADE", async (obj, cb) => {
-      console.log({ obj });
+      //  console.log({ obj });
       await gamePlay.upgrade(io, obj, socket, cb);
     });
     socket.on("QUITGAME", async (obj, cb) => {
-      console.log({ obj });
+      // console.log({ obj });
       await gamePlay.quitGame(obj, socket, io);
     });
 
     socket.on("GETALLCHATS", async (obj, cb) => {
-      console.log({ obj });
+      //  console.log({ obj });
       await userPacks.getChats(io, obj, cb);
     });
 
     socket.on("GETALLMISSIONS", async (obj, cb) => {
-      console.log({ obj });
+      // console.log({ obj });
       await userPacks.getMissions(io, obj, cb);
     });
 
     socket.on("MISSIONDONE", async (obj, cb) => {
-      console.log({ obj });
+      // console.log({ obj });
       await userPacks.missionDone(socket, io, obj, cb);
     });
     socket.on("MISSIONDONEMANY", async (obj, cb) => {
@@ -145,11 +145,11 @@ module.exports = function (io) {
       await userPacks.missionDoneMany(socket, io, obj, cb);
     });
     socket.on("ADDCHATPACK", async (obj, cb) => {
-      console.log({ obj });
+      // console.log({ obj });
       await userPacks.addChats(socket, io, obj, cb);
     });
     socket.on("DAILYREWARD", async (obj, cb) => {
-      console.log({ obj });
+      //   console.log({ obj });
       await userPacks.showDailyReward(socket, obj);
     });
     socket.on("USETIMERPACK", async (obj, cb) => {
@@ -165,18 +165,18 @@ module.exports = function (io) {
       await gamePlay.addTimerPack(obj, cb);
     });
     socket.on("CANCELTIMER", async (obj, cb) => {
-      console.log({ obj });
+      // console.log({ obj });
       await gamePlay.cancelTimer(io, obj, socket, cb);
     });
     socket.on("USEINVINCIBLE", async (obj, cb) => {
-      console.log({ obj });
+      // console.log({ obj });
       await gamePlay.useInvincible(obj, cb);
     });
     async function playerOffline(socket) {
-      console.log({ socket });
+      // console.log({ socket });
       let user = await User.findOne({ socket_id: socket });
 
-      console.log({ user });
+      // console.log({ user });
       if (user) {
         if (user.game_id != null) {
           gamePlay.leavetheGame(user.game_id, user._id, socket, 1, io);
@@ -193,7 +193,7 @@ module.exports = function (io) {
       playerOffline(socket.id);
 
       delete all_users[socket.id];
-      console.log(all_users);
+      // console.log(all_users);
     });
   });
 };
