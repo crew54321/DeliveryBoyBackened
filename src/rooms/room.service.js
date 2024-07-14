@@ -268,7 +268,7 @@ async function makeAI(room, io, socket) {
         if (aiUser != 0) {
           let last = 0;
           for (let i = 1; i <= 5; i++) {
-            let t = last + Math.floor(Math.random() * (40 - 1 + 1) + 15) * 1000;
+            let t = last + Math.floor(Math.random() * (50 - 1 + 1) + 30) * 1000;
 
             last = t;
             setTimeout(async () => {
