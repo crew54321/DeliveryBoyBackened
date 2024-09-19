@@ -162,6 +162,18 @@ router.post("/users/tutorialStep", async (req, res) => {
   try {
     let user = await User.findById(req.body.id);
     user.tutorial = 1;
+    if (!Array.isArray(user.restaurants)) {
+      user.restaurants = [];
+    }
+    for (let i = 1; i <= 10; i++) {
+      let data2 = {
+        plot_id: i,
+        restaurant_id: i,
+        level: 1,
+      };
+
+      user.restaurants.push(data2);
+    }
     await user.save();
 
     res.status(200).send({ status: 200, message: user });
